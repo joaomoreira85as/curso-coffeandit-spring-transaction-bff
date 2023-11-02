@@ -1,0 +1,55 @@
+version: "2"
+
+services:
+  zookeper:
+    image: docker.io/bitnami/zookeeper:3
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zookeper_data:/bitnami"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    image: docker.io/bitnami/kafka:2
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka_data:/bitnami"
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeper:2181
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CREATE_TOPICS=transaction:1:1, transaction_extorno:1:1
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_ADVERTISED_HOST_NAME=kafka
+      - KAFKA_ADVERTISED_PORT=9092
+    depends_on:
+      - zookeper
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  transaction-bff:
+    image: coffeeandit/spring-transaction-bff:1.0.4
+    container_name: spring-transaction
+    depends_on:
+      - kafka
+      - redis
+    restart: always
+    ports:
+      - "8082:8082"
+    links:
+      - kafka:kafka
+      - redis:redis
+
+
+volumes:
+  zookeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+
+
+networks:
+  net:
+    driver: bridge

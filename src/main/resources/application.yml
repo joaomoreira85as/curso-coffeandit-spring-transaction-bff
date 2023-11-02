@@ -1,0 +1,60 @@
+server:
+  http2:
+    enabled: true
+  port: 8443
+  ssl:
+    enabled: true
+    protocol: TLSv1.3
+    key-store-type: PKCS12
+    key-store: classpath:keystore.jks
+    key-store-password: changeit
+    trust-store-password: changeit
+    trust-store: classpath:cacerts.jks
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://keycloak.coffeeandit.com.br/auth/realms/master
+  sleuth:
+    otel:
+      exporter:
+        otlp:
+          endpoint: http://localhost:4317
+  kafka:
+    producer:
+      client-id: ${spring.application.name}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      transaction-id-prefix: ${spring.application.name}
+    bootstrap-servers: localhost:9092
+    properties:
+      spring:
+        json:
+          trusted:
+            packages: br.com.joaomoreira.*
+
+  redis:
+    port: 6379
+    host: localhost
+    timeout: 5000
+  application:
+    name: transaction-bff
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  packagesToScan: br.com.joaomoreira.transactionbff.api
+
+
+limites:
+  url: http://localhost:8081
+
+transaction:
+  url: http://localhost:8082
+
+
+
+app:
+  topic: transaction

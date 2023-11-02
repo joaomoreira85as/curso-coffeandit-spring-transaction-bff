@@ -1,0 +1,16 @@
+
+        curl -k -v --location --request POST 'https://localhost:8443/transaction' \
+        --header 'Content-Type: application/json' \
+        --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJDbU9rcWFsd1Q3SnJjVTA5X2ljVkpaQmxOQVpxc3lYUmh4cGFmanAyS3hJIn0.eyJleHAiOjE2NDgxMjA2MTMsImlhdCI6MTY0ODExODgxMywianRpIjoiMTI2OTQ4M2QtNmJhNC00ODE5LThlNzYtMzYwZTYwYThiZWE4IiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5jb2ZmZWVhbmRpdC5jb20uYnIvYXV0aC9yZWFsbXMvbWFzdGVyIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjE5YjFmMmQzLWViNWMtNGEzOC1hODFhLWE2NGY5YTk5OGQ2NSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImNvZmZlZWFuZGl0Iiwic2Vzc2lvbl9zdGF0ZSI6IjU0MDlkOTA0LWZlM2MtNDg2Zi1hNjE3LWQzNzEwNmE5ZGYxNyIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJjb2ZmZWVhbmRpdC10cmFuc2FjdGlvbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBDb2ZmZWVBbmRJVFJvbGUgY29mZmVlYW5kaXQgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImNvbnRhIjoiNzg1OTIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJjb2ZmZWVhbmRpdCIsImFnZW5jaWEiOiIyMDkiLCJlbWFpbCI6ImNvZmZlZWFuZGl0QGNvZmZlZWFuZGl0LmNvbS5iciJ9.Wu9EeFl-9wGQCgawhJEoqAnFvd_iFAT19peOJgHqY-s0eaeE2doKLrAJWrIggSdvS6zpyVOuIjZSvS4o3xCpReK0DHN-bhbEPkxXzuOHCu_iNiFHqYZmy4T91DvpetBkV_YXbvf3wHFzBYwFduWg699kcbnzFTGUHPqdkjUkbtATFLJLOzuKNsbNbqA8cqgjM0vDRhze7KpLKlcDGFNYlyiPWtuJAPDbGF4NWEBZYCwkfmt0D3pjy1uqW71Sb1WEoKvynmqWMOy87uV8UKKpDjeXn92ksaB4SKj5F_4dRI-4n0SzOYIDYlWMXJBF98X2rCNvweL8soxiLIUzjulOhQ' \
+        --data-raw '{
+          "beneficiario": {
+            "agencia": "1210",
+            "codigoBanco": 341,
+            "conta": "101214",
+            "cpf": 12735354,
+            "nomeFavorecido": "JOSÉ DOS SANTOS"
+          },
+          "tipoTransacao": "PAGAMENTO_TRIBUTOS",
+          "valor": 50
+        }'
+
